@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-//Create table into DB
 const orderSchema = new mongoose.Schema(
   {
     orderItems: [
@@ -23,6 +22,14 @@ const orderSchema = new mongoose.Schema(
       city: { type: String, required: true },
       postalCode: { type: String, required: true },
       country: { type: String, required: true },
+      location: {
+        lat: Number,
+        lng: Number,
+        address: String,
+        name: String,
+        vicinity: String,
+        googleAddressId: String,
+      },
     },
     paymentMethod: { type: String, required: true },
     paymentResult: {
@@ -42,7 +49,7 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: { type: Date },
   },
   {
-    timestamps: true, //add date
+    timestamps: true,
   }
 );
 
