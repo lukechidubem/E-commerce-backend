@@ -130,12 +130,17 @@ orderRouter.put(
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
-      order.paymentResult = {
-        id: req.body.id,
-        status: req.body.status,
-        update_time: req.body.update_time,
-        email_address: req.body.email_address,
-      };
+
+      if (Object.keys(req.body)) {
+        order.paymentResult = {
+          id: req.body.id,
+          status: req.body.status,
+          update_time: req.body.update_time,
+          email_address: req.body.email_address,
+        };
+      }
+
+      // console.log(order);
 
       const updatedOrder = await order.save();
       mailgun()
@@ -143,8 +148,10 @@ orderRouter.put(
         .send(
           {
             // from: "Amazona <amazona@mg.yourdomain.com>",
-            from: "Dubem <amazona@mg.dubemecommerce.com>",
-            to: `${order.user.name} <${order.user.email}>`,
+            from: "<lukechidubem@gmail.com>",
+            // from: "Amazona <amazona@mg.http://localhost:3000>",
+            // to: `${order.user.name} <${order.user.email}>`,
+            to: `<${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),
           },

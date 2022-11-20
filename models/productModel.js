@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema(
     image3: { type: String, required: true },
     countInStock: { type: Number, required: true },
     price: { type: Number, required: true },
+    _id: String,
   },
   {
     timestamps: true, //add date
