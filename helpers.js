@@ -66,7 +66,7 @@ export const payOrderEmailTemplate = (order) => {
     .map(
       (item) => `
     <tr>
-    <td>${item.name}</td>
+    <td>${item.title}</td>
     <td align="center">${item.quantity}</td>
     <td align="right"> $${item.price.toFixed(2)}</td>
     </tr>
@@ -82,6 +82,10 @@ export const payOrderEmailTemplate = (order) => {
   <tr>
   <td colspan="2">Shipping Price:</td>
   <td align="right"> $${order.shippingPrice.toFixed(2)}</td>
+  </tr>
+  <tr>
+  <td colspan="2">Tax Price:</td>
+  <td align="right"> $${order.taxPrice.toFixed(2)}</td>
   </tr>
   <tr>
   <td colspan="2"><strong>Total Price:</strong></td>

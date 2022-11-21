@@ -4,6 +4,9 @@ import Order from "../models/orderModel.js";
 import User from "../models/userModel.js";
 import Product from "../models/productModel.js";
 import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from "../helpers.js";
+// const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
+// const sendEmail = require('../email')
 
 const orderRouter = express.Router();
 
@@ -143,14 +146,42 @@ orderRouter.put(
       // console.log(order);
 
       const updatedOrder = await order.save();
+
+      // const sendEmail = async () => {
+      //   // create a transporter
+      //   const transporter = nodemailer.createTransport({
+      //     host: process.env.EMAIL_HOST,
+      //     port: process.env.EMAIL_PORT,
+      //     auth: {
+      //       user: process.env.EMAIL_USERNAME,
+      //       pass: process.env.EMAIL_PASSWORD,
+      //     },
+      //   });
+
+      //   // Define the email options
+      //   const mailOptions = {
+      //     from: "Dubem Luke <lukechidubem@gmail.com>",
+      //     to: `<${order.user.email}>`,
+      //     subject: `New order ${order._id}`,
+      //     html: payOrderEmailTemplate(order),
+      //   };
+
+      //   // Actually send the email
+
+      //   await transporter.sendMail(mailOptions);
+      // };
+
+      // sendEmail();
+
+      // sendMail(order);
+
       mailgun()
         .messages()
         .send(
           {
             // from: "Amazona <amazona@mg.yourdomain.com>",
-            from: "<lukechidubem@gmail.com>",
-            // from: "Amazona <amazona@mg.http://localhost:3000>",
-            // to: `${order.user.name} <${order.user.email}>`,
+            from: "Dubem Luke <Dubem@mg.dubemecommerce.com>",
+
             to: `<${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),
