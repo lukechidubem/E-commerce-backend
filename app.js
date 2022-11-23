@@ -6,8 +6,11 @@ import productRouter from "./routes/productRoutes.js";
 import uploadRouter from "./routes/uploadRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
 import dotenv from "dotenv";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors());
 
 dotenv.config();
 
