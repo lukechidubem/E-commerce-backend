@@ -17,6 +17,7 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
+    Product.init();
     const newProduct = new Product({
       // title: "sample title " + Date.now(),
       title: "sample title ",

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     description: { type: String, required: true },
     category: { type: String, required: true },
@@ -12,7 +12,8 @@ const productSchema = new mongoose.Schema(
     image3: { type: String, required: true },
     countInStock: { type: Number, required: true },
     price: { type: Number, required: true },
-    _id: String,
+    // _id: String,
+    // _id: mongoose.Schema.Types.ObjectId,
   },
   {
     timestamps: true, //add date
